@@ -4,8 +4,10 @@ from sqlalchemy import text
 from tabulate import tabulate
 
 conn_str = (
-    "mssql+pyodbc://project:qwerty123@172.25.59.2:1433/bookstore"
+    "mssql+pyodbc://@LAPTOP-5B8TNS55\SALIMOV/BookStore"
     "?driver=ODBC+Driver+17+for+SQL+Server"
+    "&trusted_connection=yes"
+    "&TrustServerCertificate=yes"
 )
 
 engine = sa.create_engine(conn_str)
@@ -27,7 +29,7 @@ on s4.book_id = s5.id
 where ordered_at between DATEADD(MONTH,-1,getdate()) and GETDATE()'''
 
         df = pd.read_sql_query(query, connection)
-        df.to_csv('../Report_files/monthly_reports.csv', index=False)
+        df.to_csv('Report_files/monthly_reports.csv', index=False)
 
     @staticmethod
     def top_buyers():

@@ -2,12 +2,11 @@ import pyodbc
 from tabulate import tabulate
 
 connection = pyodbc.connect(
-    "DRIVER={SQL Server};"
-    "SERVER=172.25.59.2,1433"  # Yoki kompyuter nomi
+    "DRIVER={ODBC Driver 18 for SQL Server};"
+    "SERVER=LAPTOP-5B8TNS55\SALIMOV;"
     "DATABASE=BookStore;"
-    "UID=project;"  # SQL Server foydalanuvchi nomi
-    "PWD=qwerty123;"  # SQL Server paroli
-    "TrustServerCertificate=yes;",  # Sertifikat xatolarini oldini oladi
+    "Trusted_Connection=yes;"
+    "TrustServerCertificate=yes;",
     timeout=60
 )
 cursor = connection.cursor()

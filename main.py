@@ -12,15 +12,14 @@ import Auth
 import Book
 import Inventory
 import Buy
-import Reports
+import Reports 
 
 connection = pyodbc.connect(
-    "DRIVER={SQL Server};"
-    "SERVER=172.25.59.2,1433"  # Yoki kompyuter nomi
-    "DATABASE=BookStore;"
-    "UID=project;"  # SQL Server foydalanuvchi nomi
-    "PWD=qwerty123;"  # SQL Server paroli
-    "TrustServerCertificate=yes;",  # Sertifikat xatolarini oldini oladi
+    r"DRIVER={ODBC Driver 18 for SQL Server};"
+    r"SERVER=LAPTOP-5B8TNS55\SALIMOV;"
+    r"DATABASE=BookStore;"
+    r"Trusted_Connection=yes;"
+    r"TrustServerCertificate=yes;",
     timeout=60
 )
 cursor = connection.cursor()
@@ -37,74 +36,6 @@ class Bcolors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
-
-
-# define the menu function
-# def menu(title, classes, color='white'):
-#     # define the curses wrapper
-#     def character(stdscr, ):
-#         attributes = {}
-#         # stuff i copied from the internet that i'll put in the right format later
-#         icol = {
-#             1: 'red',
-#             2: 'green',
-#             3: 'yellow',
-#             4: 'blue',
-#             5: 'magenta',
-#             6: 'cyan',
-#             7: 'white'
-#         }
-#         # put the stuff in the right format
-#         col = {v: k for k, v in icol.items()}
-#
-#         # declare the background color
-#
-#         bc = curses.COLOR_BLACK
-#
-#         # make the 'normal' format
-#         curses.init_pair(1, 7, bc)
-#         attributes['normal'] = curses.color_pair(1)
-#
-#         # make the 'highlighted' format
-#         curses.init_pair(2, col[color], bc)
-#         attributes['highlighted'] = curses.color_pair(2)
-#
-#         # handle the menu
-#         c = 0
-#         option = 0
-#         while c != 10:
-#
-#             stdscr.erase()  # clear the screen (you can erase this if you want)
-#
-#             # add the title
-#             stdscr.addstr(f"{title}\n", curses.color_pair(1))
-#
-#             # add the options
-#             for i in range(len(classes)):
-#                 # handle the colors
-#                 if i == option:
-#                     attr = attributes['highlighted']
-#                 else:
-#                     attr = attributes['normal']
-#
-#                 # actually add the options
-#
-#                 stdscr.addstr(f'> ', attr)
-#                 stdscr.addstr(f'{classes[i]}' + '\n', attr)
-#             c = stdscr.getch()
-#
-#             # handle the arrow keys
-#             if c == curses.KEY_UP and option > 0:
-#                 option -= 1
-#             elif c == curses.KEY_DOWN and option < len(classes) - 1:
-#                 option += 1
-#         return option
-#
-#     return curses.wrapper(character)
-#
-#
-# print(f"output:", menu('TEST', ['this will return 0', 'this will return 1',
-#                                 'this is just to show that you can do more options then just two'], 'blue'))
 
 command_txt = ''' Enter Command Number: '''
 while True:
